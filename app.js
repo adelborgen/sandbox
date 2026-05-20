@@ -208,17 +208,17 @@ function setPhotoAdminMode(on) {
   const wrap    = document.getElementById('about-photo-wrap');
   const ph      = document.getElementById('about-photo-placeholder');
   const overlay = document.getElementById('about-photo-overlay');
-  const img     = document.getElementById('about-photo-img');
   if (!wrap) return;
-  const hasPhoto = img && img.src && img.style.display !== 'none' && !img.src.endsWith('/');
   if (on) {
     wrap.style.cursor = 'pointer';
     wrap.onclick = () => document.getElementById('about-photo-input').click();
-    if (!hasPhoto && ph) ph.style.display = 'flex';
+    if (ph) ph.classList.add('admin-visible');
+    if (overlay) overlay.style.display = 'flex';
   } else {
     wrap.style.cursor = 'default';
     wrap.onclick = null;
-    if (ph) ph.style.display = 'none';
+    if (ph) ph.classList.remove('admin-visible');
+    if (overlay) overlay.style.display = 'none';
   }
 }
 function handlePhotoUpload(event) {
